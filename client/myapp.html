@@ -1,0 +1,74 @@
+<head>
+  <title>Mood Dairy</title>
+  <link rel="stylesheet" href="/myapp.css">
+  <link rel="stylesheet" href= "/main.css">
+</head>
+ 
+<body>
+
+
+</body>
+
+
+<template name="index">
+	<header class="major">
+		<h2>How's your mood {{>loginButtons}}</h2>
+		<p>Track your mood and find out your BEST and WORST time</p>
+	</header>
+
+	{{#if currentUser}}
+	<div class="emoticons">
+        <div class="emoji-wrapper">
+	<button class="emoji very-sad" id="very-sad" name="text" value ="0"></button>
+	<label for="very-sad"> Very Sad </label>
+	</div>
+        <div class="emoji-wrapper">
+	<button class="emoji sad" id="sad" name="text" value = "1"></button>
+	<label for="sad"> Sad </label>
+
+	</div>
+        <div class="emoji-wrapper">
+	<button class="emoji confused" id="confused" name="text" value="2"></button>
+	<label for="confused"> Confused </label>
+
+	</div>
+        <div class="emoji-wrapper">
+	<button class="emoji normal" id="normal" name="text" value="3"></button>
+	<label for="normal"> Normal </label>
+	</div>
+        <div class="emoji-wrapper">
+	<button class ="emoji calm" id="calm" name ="text" value="4"></button>
+	<label> Calm </label>
+	</div>
+        <div class="emoji-wrapper">
+	<button class="emoji happy" id="happy" name="text" value="5"></button>
+	<label for="happy"> Happy</label>
+	</div>
+        <div class="emoji-wrapper">
+	<button class="emoji excited" id="excited" name="text" value="6"></button>
+	<label for="excited"> Excited </label>
+	</div>
+	</div>
+    <div class="status-container">
+    <ul>
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </ul>
+    </div>
+	{{/if}}
+</template>
+
+
+<!-- to show moods --> 
+<template name="task">
+  <li  class="{{#if checked}} checked {{/if}}">
+<button class=delete></button>
+</li>
+<span class="text"><strong>{{username}}</strong> feeling  {{ text }} on {{ createdAt }}</span>
+</template>
+
+<template name="graph">
+<h1>Graph</h1>
+{{> highchartsHelper chartId="test" chartWidth="100%" charHeight="100%" chartObject=topGenresChart}}
+</template>
